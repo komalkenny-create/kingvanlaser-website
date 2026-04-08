@@ -346,9 +346,10 @@
     arrows: false,
     dots: false,
     infinite: true,
-    autoplay: false,
-    centerMode: true,
-    centerPadding: 0,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    fade: true,
+    cssEase: 'linear',
     asNavFor: '.sigma_banner-thumbnails'
   });
 
