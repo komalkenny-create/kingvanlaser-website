@@ -1,0 +1,157 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?06f981b12f54017decf20b6462cc297b") format("truetype"),
+url("./flaticon.woff?06f981b12f54017decf20b6462cc297b") format("woff"),
+url("./flaticon.woff2?06f981b12f54017decf20b6462cc297b") format("woff2"),
+url("./flaticon.eot?06f981b12f54017decf20b6462cc297b#iefix") format("embedded-opentype"),
+url("./flaticon.svg?06f981b12f54017decf20b6462cc297b#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "diamond": "\f101",
+    "speed": "\f102",
+    "trophy": "\f103",
+    "target": "\f104",
+    "telephone": "\f105",
+    "message": "\f106",
+    "security": "\f107",
+    "headphones": "\f108",
+    "search": "\f109",
+    "award": "\f10a",
+    "appointment": "\f10b",
+    "pay": "\f10c",
+    "select": "\f10d",
+    "shopping-bag": "\f10e",
+    "mail": "\f10f",
+    "email": "\f110",
+    "right-quote": "\f111",
+    "telephone-1": "\f112",
+    "search-1": "\f113",
+    "rating": "\f114",
+    "guarantee": "\f115",
+    "award-1": "\f116",
+    "best-price": "\f117",
+    "24-hours": "\f118",
+    "team": "\f119",
+    "buy-button": "\f11a",
+    "smartphone": "\f11b",
+    "best": "\f11c",
+    "24-hours-1": "\f11d",
+    "delivery-truck": "\f11e",
+    "money-back": "\f11f",
+    "drilling-rig": "\f120",
+    "contruction": "\f121",
+);
+
+.flaticon-diamond:before {
+    content: map-get($flaticon-map, "diamond");
+}
+.flaticon-speed:before {
+    content: map-get($flaticon-map, "speed");
+}
+.flaticon-trophy:before {
+    content: map-get($flaticon-map, "trophy");
+}
+.flaticon-target:before {
+    content: map-get($flaticon-map, "target");
+}
+.flaticon-telephone:before {
+    content: map-get($flaticon-map, "telephone");
+}
+.flaticon-message:before {
+    content: map-get($flaticon-map, "message");
+}
+.flaticon-security:before {
+    content: map-get($flaticon-map, "security");
+}
+.flaticon-headphones:before {
+    content: map-get($flaticon-map, "headphones");
+}
+.flaticon-search:before {
+    content: map-get($flaticon-map, "search");
+}
+.flaticon-award:before {
+    content: map-get($flaticon-map, "award");
+}
+.flaticon-appointment:before {
+    content: map-get($flaticon-map, "appointment");
+}
+.flaticon-pay:before {
+    content: map-get($flaticon-map, "pay");
+}
+.flaticon-select:before {
+    content: map-get($flaticon-map, "select");
+}
+.flaticon-shopping-bag:before {
+    content: map-get($flaticon-map, "shopping-bag");
+}
+.flaticon-mail:before {
+    content: map-get($flaticon-map, "mail");
+}
+.flaticon-email:before {
+    content: map-get($flaticon-map, "email");
+}
+.flaticon-right-quote:before {
+    content: map-get($flaticon-map, "right-quote");
+}
+.flaticon-telephone-1:before {
+    content: map-get($flaticon-map, "telephone-1");
+}
+.flaticon-search-1:before {
+    content: map-get($flaticon-map, "search-1");
+}
+.flaticon-rating:before {
+    content: map-get($flaticon-map, "rating");
+}
+.flaticon-guarantee:before {
+    content: map-get($flaticon-map, "guarantee");
+}
+.flaticon-award-1:before {
+    content: map-get($flaticon-map, "award-1");
+}
+.flaticon-best-price:before {
+    content: map-get($flaticon-map, "best-price");
+}
+.flaticon-24-hours:before {
+    content: map-get($flaticon-map, "24-hours");
+}
+.flaticon-team:before {
+    content: map-get($flaticon-map, "team");
+}
+.flaticon-buy-button:before {
+    content: map-get($flaticon-map, "buy-button");
+}
+.flaticon-smartphone:before {
+    content: map-get($flaticon-map, "smartphone");
+}
+.flaticon-best:before {
+    content: map-get($flaticon-map, "best");
+}
+.flaticon-24-hours-1:before {
+    content: map-get($flaticon-map, "24-hours-1");
+}
+.flaticon-delivery-truck:before {
+    content: map-get($flaticon-map, "delivery-truck");
+}
+.flaticon-money-back:before {
+    content: map-get($flaticon-map, "money-back");
+}
+.flaticon-drilling-rig:before {
+    content: map-get($flaticon-map, "drilling-rig");
+}
+.flaticon-contruction:before {
+    content: map-get($flaticon-map, "contruction");
+}
