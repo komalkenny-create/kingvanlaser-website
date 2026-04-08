@@ -339,8 +339,8 @@
     asNavFor: '.sigma_banner-slider-4'
   });
 
+  // Hero 主轮播
   $(".sigma_banner-slider-5").slick({
-
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -353,27 +353,20 @@
     asNavFor: '.sigma_banner-thumbnails'
   });
 
-  $(".sigma_banner-thumbnails").slick({
-
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: false,
-    infinite: true,
-    autoplay: true,
-    centerMode: false,
-    centerPadding: 0,
-    focusOnSelect: true,
-    asNavFor: '.sigma_banner-slider-5',
-    responsive: [
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 2
-        }
-      }
-    ]
+  // 缩略图 - 不轮播，保持静态显示
+  $('.sigma_banner-thumbnails .slide-item').on('click', function() {
+    var index = $(this).index();
+    $('.sigma_banner-slider-5').slick('slickGoTo', index);
   });
+
+  // 主图切换时，高亮对应缩略图
+  $('.sigma_banner-slider-5').on('afterChange', function(event, slick, currentSlide) {
+    $('.sigma_banner-thumbnails .slide-item').removeClass('active');
+    $('.sigma_banner-thumbnails .slide-item').eq(currentSlide).addClass('active');
+  });
+
+  // 初始化：高亮第一个缩略图
+  $('.sigma_banner-thumbnails .slide-item').eq(0).addClass('active');
 
   /*-------------------------------------------------------------------------------
   Gallery Format Slider
