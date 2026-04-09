@@ -339,34 +339,55 @@
     asNavFor: '.sigma_banner-slider-4'
   });
 
-  // Hero 主轮播
-  $(".sigma_banner-slider-5").slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    fade: true,
-    cssEase: 'linear',
-    asNavFor: '.sigma_banner-thumbnails'
-  });
+  // Home 1 hero: 主图与缩略图同步轮播
+  if ($('.sigma_banner-slider-5').length && $('.sigma_banner-thumbnails').length) {
+    var $heroSlider = $('.sigma_banner-slider-5');
+    var $heroThumbs = $('.sigma_banner-thumbnails');
+    var $thumbItems = $heroThumbs.find('.slide-item');
 
-  // 缩略图 - 不轮播，保持静态显示
-  $('.sigma_banner-thumbnails .slide-item').on('click', function() {
-    var index = $(this).index();
-    $('.sigma_banner-slider-5').slick('slickGoTo', index);
-  });
+    $thumbItems.each(function(index) {
+      $(this).attr('data-hero-index', index);
+    });
 
-  // 主图切换时，高亮对应缩略图
-  $('.sigma_banner-slider-5').on('afterChange', function(event, slick, currentSlide) {
-    $('.sigma_banner-thumbnails .slide-item').removeClass('active');
-    $('.sigma_banner-thumbnails .slide-item').eq(currentSlide).addClass('active');
-  });
+    function syncHeroThumbs(currentSlide) {
+      var $activeThumb = $heroThumbs.find('.slide-item[data-hero-index="' + currentSlide + '"]');
 
-  // 初始化：高亮第一个缩略图
-  $('.sigma_banner-thumbnails .slide-item').eq(0).addClass('active');
+      // 当前项始终放到第一位，保证页面固定显示三张且不消失
+      if ($activeThumb.length) {
+        $activeThumb.prependTo($heroThumbs);
+      }
+
+      $heroThumbs.find('.slide-item').removeClass('active');
+      $heroThumbs.find('.slide-item[data-hero-index="' + currentSlide + '"]').addClass('active');
+    }
+
+    $heroSlider.on('init', function() {
+      syncHeroThumbs(0);
+    });
+
+    $heroSlider.on('afterChange', function(event, slick, currentSlide) {
+      syncHeroThumbs(currentSlide);
+    });
+
+    $heroThumbs.on('click', '.slide-item', function() {
+      var targetIndex = parseInt($(this).attr('data-hero-index'), 10);
+      if (!isNaN(targetIndex)) {
+        $heroSlider.slick('slickGoTo', targetIndex);
+      }
+    });
+
+    $heroSlider.slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      dots: false,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      fade: true,
+      cssEase: 'linear'
+    });
+  }
 
   /*-------------------------------------------------------------------------------
   Gallery Format Slider
