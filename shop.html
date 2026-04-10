@@ -27,6 +27,15 @@
   <link href="assets/css/style.css?v=2" rel="stylesheet">
   <link href="assets/fonts/font-awesome.min.css?v=2" rel="stylesheet">
   <link href="assets/fonts/flaticon/flaticon.css?v=2" rel="stylesheet">
+  <style>
+    /* Custom spacing between product title and description */
+    .sigma_product.style-5 .sigma_product-title {
+      margin-bottom: 15px !important;
+    }
+    .sigma_product.style-5 .sigma_product-body p {
+      margin-top: 0;
+    }
+  </style>
 </head>
 
 <body class="btn-style-1 btn-pill sidebar-style-5">
@@ -288,38 +297,21 @@
     </div>
     <!--preloader End-->
   </div>
-  <!--popup Start-->
-  <div id="section-popup">
-    <div class="sigma_popup bg-contain bg-center" style="background-image: url(assets/img/shop/600.jpg)">
-      <div class="sigma_close newsletter-popup-trigger">
-        <span></span>
-        <span></span>
-      </div>
-      <div class="sigma_popup-text">
-        <h3>Join Our Newsletter</h3>
-        <p> A sole proprietor has liability .</p>
-      </div>
-      <form method="post" class="text-center">
-        <div class="form-group">
-          <input type="email" placeholder="Email Address" class="form-control" name="newsletter-email" value="">
-        </div>
-        <button type="submit" name="button" class="btn-block">Subscribe</button>
-      </form>
-    </div>
-    <!--popup End-->
-  </div>
   <!--shop Start-->
   <div id="section-shop">
     <div class="section">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <!-- Product Count & Orderby Start -->
+<!-- Product Count Start -->
             <div class="sigma_shop-global">
-              <p>Showing <b>20</b> of <b>320</b> products</p>
-              <a href="#" class="custom-secondary fw-600">Filter <i class="custom-primary far fa-filter ml-2"></i> </a>
+              <p>Showing <b id="product-count">9</b> products</p>
             </div>
-            <!-- Product Count & Orderby End -->
+            <!-- Product Count End -->
+            <!-- No Results Message -->
+            <div id="no-results" class="alert alert-info" style="display: none;">
+              No products found matching your search.
+            </div>
             <div class="row masonry">
               <!-- Product 1: HK-YLP-30W Aluminum Window Laser Marking Machine -->
               <div class="col-md-4 col-sm-6 masonry-item">
@@ -329,17 +321,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">HK-YLP-30W Aluminum Window Laser Marking Machine</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="hk-ylp-30w.html">HK-YLP-30W Aluminum Window Laser Marking Machine</a> </h5>
                     <p>Fiber laser marking machine, 30W power, marking speed 0-12000mm/s, ideal for aluminum alloy windows, doors, window hardware accessories and more.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -361,17 +343,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">HK-CP-40W Aluminum-Wood Window Laser Marking Machine</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="hk-cp-40w.html">HK-CP-40W Aluminum-Wood Window Laser Marking Machine</a> </h5>
                     <p>CO2 laser marking machine, 40W power, ideal for aluminum doors & windows, aluminum-wood windows, glass, acrylic, thermal break strips, edge sealing strips, etc.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -393,17 +365,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">HK-YLP-60W Aluminum Profile Online Laser Marking Machine</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="hk-ylp-60w.html">HK-YLP-60W Aluminum Profile Online Laser Marking Machine</a> </h5>
                     <p>Fiber laser marking machine, 60W power, flying marking speed up to 120m/s, ideal for aluminum doors & windows, screen windows, window hardware, thermal break strips, etc.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -425,17 +387,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">Handheld Laser Welding Machine (1000W-3000W)</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="handheld-laser-welder.html">Handheld Laser Welding Machine (1000W-3000W)</a> </h5>
                     <p>Ergonomic design, lightweight handheld head, ideal for welding stainless steel, carbon steel, iron, galvanized sheet, aluminum alloy and other metals. Power options: 1000W/1500W/2000W/3000W.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -457,17 +409,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">Dual-Axis Dual-Station Seamless Welding Machine (1500W)</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="dual-axis-welder.html">Dual-Axis Dual-Station Seamless Welding Machine</a> </h5>
                     <p>1500W fiber continuous laser, mainly used for seamless laser welding of aluminum doors & windows. Dual-station design, welding thickness 0.8-2.0mm, welding speed 0-2000mm/min.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -489,17 +431,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">Tri-Axis Dual-Station Seamless Welding Machine (1500W)</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="tri-axis-welder.html">Tri-Axis Dual-Station Seamless Welding Machine (1500W)</a> </h5>
                     <p>1500W fiber continuous laser, tri-axis motion system, ideal for seamless laser welding of aluminum doors & windows. Automatically produces fish-scale pattern, beautiful and full.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -521,17 +453,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">Full-Frame 3D Vision Automatic Seamless Welding Machine</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="3d-vision-welder.html">Full-Frame 3D Vision Automatic Seamless Welding Machine</a> </h5>
                     <p>Shenzhen Chuangxin 2KW continuous fiber laser, full-automatic 3D vision scanning positioning, max welding size 6×2.8m, welding speed 1.2-1.8m/min, no manual intervention required.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -553,17 +475,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">Fully Automatic Robot Welding Workstation (YHR-1450)</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="robot-welder.html">Fully Automatic Robot Welding Workstation</a> </h5>
                     <p>Working radius 1450mm, compact size, high control precision. Built-in encoder feedback, flip positioner for full-position welding on both sides of workpiece, intelligent parameter matching.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -585,17 +497,7 @@
                     <a href="#" data-toggle="modal" data-target="#quickViewModal">Quick View</a>
                   </div>
                   <div class="sigma_product-body">
-                    <h5 class="sigma_product-title"> <a href="product-details.html">CNC Dual-Station R-Arc Corner Cutting Machine</a> </h5>
-                    <div class="sigma_product-price">
-                      <span>Contact for Price</span>
-                    </div>
-                    <div class="sigma_rating">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                    </div>
+<h5 class="sigma_product-title"> <a href="cnc-corner-cutter.html">CNC Dual-Station R-Arc Corner Cutting Machine</a> </h5>
                     <p>10-inch touchscreen, PLC control, automatic memory of window sash models, one-key start. Ideal for window corner R-arc cutting (R5/R6/R7/R8/R10 available), anti-scratch.</p>
                   </div>
                   <div class="sigma_product-footer">
@@ -877,7 +779,7 @@
     </footer>
     <!--footer End-->
   </div>
-  <script src="assets/js/plugins/jquery-3.4.1.min.js"></script>
+<script src="assets/js/plugins/jquery-3.4.1.min.js"></script>
   <script src="assets/js/plugins/popper.min.js"></script>
   <script src="assets/js/plugins/bootstrap.min.js"></script>
   
@@ -890,6 +792,74 @@
   <script src="assets/js/plugins/ion.rangeSlider.min.js"></script>
   <script src="assets/js/plugins/jquery.validate.min.js"></script>
   <script src="assets/js/main.js"></script>
+  
+  <!-- Product Search Script -->
+  <script>
+    (function($) {
+      'use strict';
+      
+      $(window).on('load', function() {
+        var $productGrid = $('.row.masonry');
+        var $products = $productGrid.find('.masonry-item');
+        var $searchInput = $('.search-form input[type="text"]');
+        var $searchBtn = $('.search-btn');
+        var $noResults = $('#no-results');
+        var $productCount = $('#product-count');
+        var $searchFormWrapper = $('.search-form-wrapper');
+
+        function filterProducts() {
+          var searchTerm = $searchInput.val().toLowerCase().trim();
+          var visibleCount = 0;
+
+          $products.each(function() {
+            var $product = $(this);
+            var title = $product.find('.sigma_product-title').text().toLowerCase();
+            var description = $product.find('.sigma_product-body p').text().toLowerCase();
+
+            if (searchTerm === '' || title.indexOf(searchTerm) > -1 || description.indexOf(searchTerm) > -1) {
+              $product.show();
+              visibleCount++;
+            } else {
+              $product.hide();
+            }
+          });
+
+          $productCount.text(visibleCount);
+
+          if (visibleCount === 0) {
+            $noResults.show();
+          } else {
+            $noResults.hide();
+          }
+
+          if ($productGrid.data('isotope')) {
+            $productGrid.isotope('layout');
+          }
+        }
+
+        // Search on button click
+        $searchBtn.on('click', function(e) {
+          e.preventDefault();
+          filterProducts();
+        });
+
+        // Search on Enter key
+        $searchInput.on('keypress', function(e) {
+          if (e.which === 13) {
+            e.preventDefault();
+            filterProducts();
+          }
+        });
+
+        // Live search on input
+        var searchTimeout;
+        $searchInput.on('input', function() {
+          clearTimeout(searchTimeout);
+          searchTimeout = setTimeout(filterProducts, 300);
+        });
+      });
+    })(jQuery);
+  </script>
   
 </body>
 

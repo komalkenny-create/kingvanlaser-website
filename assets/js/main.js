@@ -80,8 +80,25 @@
   /*-------------------------------------------------------------------------------
   Search Trigger
   -------------------------------------------------------------------------------*/
-  $(".search-trigger").on('click', function(e) {
-    $(".search-form-wrapper").toggleClass('open');
+  $(document).on('click', '.search-trigger a', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('.search-form-wrapper').addClass('open');
+    setTimeout(function() {
+      $('.search-form input[type="text"]').focus();
+    }, 100);
+  });
+
+  $(document).on('click', '.search-form-wrapper .sigma_close', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $('.search-form-wrapper').removeClass('open');
+  });
+
+  $(document).on('click', '.search-form-wrapper', function(e) {
+    if ($(e.target).hasClass('search-form-wrapper')) {
+      $(this).removeClass('open');
+    }
   });
 
   /*-------------------------------------------------------------------------------

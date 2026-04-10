@@ -15784,6 +15784,10 @@ background-color: var(--thm-border);
   margin: 0 0 10px;
   font-weight: 400;
   word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .sigma_product .sigma_product-body .sigma_product-title a {
@@ -16050,13 +16054,13 @@ background-color: var(--thm-border);
 /* Style 5 */
 .sigma_product.style-5 .sigma_product-thumb a{
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   left: 50%;
   display: inline-block;
   margin: 10px 0;
   transform: translateX(-50%);
   text-align: center;
-  background-color: rgba(0,0,0,.1);
+  background-color: rgba(0,0,0,.6);
   padding: 10px 20px;
   color: #fff;
   font-weight: 600;
@@ -16066,6 +16070,18 @@ background-color: var(--thm-border);
   opacity: 0;
   visibility: hidden;
   min-width: 150px;
+  border-radius: 4px;
+  z-index: 2;
+}
+.sigma_product.style-5 .sigma_product-thumb{
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+}
+.sigma_product.style-5 .sigma_product-thumb img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 .sigma_product.style-5 .sigma_product-thumb a:hover{
   background-color: var(--thm-base);
@@ -16074,8 +16090,22 @@ background-color: var(--thm-border);
   opacity: 1;
   visibility: visible;
 }
+.sigma_product.style-5 .sigma_product-body h5 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  min-height: 60px;
+  line-height: 1.4;
+}
+
 .sigma_product.style-5 .sigma_product-body p{
   font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 78px;
+  margin-top: -30px;
 }
 .sigma_product.style-5 .sigma_product-footer .sigma_btn{
   font-size: 12px;
@@ -16813,4 +16843,3 @@ td.remove button span {
     margin-bottom: 20px;
   }
 }
-
