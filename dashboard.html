@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | KINGVAN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #3b82f6;
+            --text: #475569;
+            --text-light: #94a3b8;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text);
+        }
+        
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-right: 1px solid var(--border);
+            padding: 30px 24px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .sidebar-logo img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .sidebar-logo span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .user-info h4 {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+        
+        .user-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .nav-item:hover {
+            background: var(--bg-light);
+            color: var(--primary);
+        }
+        
+        .nav-item.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+        
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .logout-btn {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            color: #ef4444;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px;
+        }
+        
+        .dashboard-header {
+            margin-bottom: 40px;
+        }
+        
+        .dashboard-header h1 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        
+        .dashboard-header p {
+            color: var(--text-light);
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .stat-icon.blue { background: rgba(37, 99, 235, 0.1); color: var(--primary); }
+        .stat-icon.green { background: rgba(34, 197, 94, 0.1); color: var(--success); }
+        .stat-icon.orange { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        /* Files Section */
+        .files-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .file-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .file-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .file-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .file-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .file-icon.pdf { background: #fee2e2; color: #ef4444; }
+        .file-icon.doc { background: #dbeafe; color: var(--primary); }
+        .file-icon.xls { background: #dcfce7; color: var(--success); }
+        .file-icon.zip { background: #fef3c7; color: var(--warning); }
+        
+        .file-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .file-info h4 {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+        
+        .file-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .file-size {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .download-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        
+        .empty-state p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        /* Loading */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="LOGO.png" alt="KINGVAN">
+                <span>KINGVAN</span>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">JD</div>
+                <div class="user-info">
+                    <h4 id="userName">John Doe</h4>
+                    <p id="userEmail">john@company.com</p>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    Dashboard
+                </div>
+                <div class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    Downloads
+                </div>
+                <div class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    Profile
+                </div>
+                <div class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Messages
+                </div>
+            </nav>
+            
+            <div class="logout-btn" id="logoutBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Logout
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1>Welcome back, <span id="welcomeName">John</span>! 👋</h1>
+                <p>Manage your downloads and account settings</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="totalFiles">0</div>
+                    <div class="stat-label">Available Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="downloadedFiles">0</div>
+                    <div class="stat-label">Downloaded</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-icon orange">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Unlimited Downloads</div>
+                </div>
+            </div>
+
+            <!-- Files Section -->
+            <section class="files-section">
+                <div class="section-header">
+                    <h2>📁 Available Downloads</h2>
+                    <span style="color: var(--text-light); font-size: 0.9rem;">Exclusive resources for registered members</span>
+                </div>
+                
+                <div class="files-grid" id="filesGrid">
+                    <!-- Files will be loaded here -->
+                    <div class="loading">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // TODO: Replace with your Firebase config
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Sample files data (in production, this would come from Firestore)
+        const filesData = [
+            {
+                id: 1,
+                name: 'Product Catalog 2025',
+                type: 'pdf',
+                size: '5.2 MB',
+                description: 'Complete product catalog with specifications',
+                url: 'files/catalog-2025.pdf'
+            },
+            {
+                id: 2,
+                name: 'Technical Manual',
+                type: 'pdf',
+                size: '12.8 MB',
+                description: 'Operating instructions and maintenance guide',
+                url: 'files/technical-manual.pdf'
+            },
+            {
+                id: 3,
+                name: 'Price List Q1 2025',
+                type: 'xls',
+                size: '1.2 MB',
+                description: 'Updated pricing for all products',
+                url: 'files/price-list-q1-2025.xlsx'
+            },
+            {
+                id: 4,
+                name: 'Installation Guide',
+                type: 'doc',
+                size: '3.5 MB',
+                description: 'Step-by-step installation instructions',
+                url: 'files/installation-guide.docx'
+            },
+            {
+                id: 5,
+                name: 'Software Update v2.0',
+                type: 'zip',
+                size: '45.6 MB',
+                description: 'Latest software for laser marking machines',
+                url: 'files/software-v2.zip'
+            },
+            {
+                id: 6,
+                name: 'Certification Documents',
+                type: 'pdf',
+                size: '2.8 MB',
+                description: 'ISO, CE, and other certifications',
+                url: 'files/certifications.pdf'
+            }
+        ];
+
+        // Check authentication
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Load user data
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    document.getElementById('userName').textContent = userData.firstName + ' ' + userData.lastName;
+                    document.getElementById('userEmail').textContent = user.email;
+                    document.getElementById('welcomeName').textContent = userData.firstName;
+                    document.getElementById('userAvatar').textContent = userData.firstName[0] + userData.lastName[0];
+                }
+                
+                // Load files
+                loadFiles();
+            } else {
+                // Redirect to sign in
+                window.location.href = 'signin.html';
+            }
+        });
+
+        function loadFiles() {
+            const filesGrid = document.getElementById('filesGrid');
+            filesGrid.innerHTML = filesData.map(file => `
+                <div class="file-card">
+                    <div class="file-header">
+                        <div class="file-icon ${file.type}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                ${file.type === 'pdf' ? '<polyline points="14 2 14 8 20 8"/>' : ''}
+                            </svg>
+                        </div>
+                        <div class="file-info">
+                            <h4>${file.name}</h4>
+                            <p>${file.description}</p>
+                        </div>
+                    </div>
+                    <div class="file-meta">
+                        <span class="file-size">${file.size}</span>
+                        <button class="download-btn" onclick="downloadFile('${file.url}', '${file.name}')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('totalFiles').textContent = filesData.length;
+            document.getElementById('downloadedFiles').textContent = '0';
+        }
+
+        window.downloadFile = function(url, filename) {
+            // In production, this would track downloads in Firestore
+            alert(`Starting download: ${filename}\n\nIn production, this would download the actual file from your storage.`);
+            
+            // Track download count
+            const downloadedEl = document.getElementById('downloadedFiles');
+            downloadedEl.textContent = parseInt(downloadedEl.textContent) + 1;
+        };
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            if (confirm('Are you sure you want to logout?')) {
+                await signOut(auth);
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>
