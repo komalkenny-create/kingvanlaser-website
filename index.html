@@ -487,23 +487,23 @@
                 <form class="contact-form" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name *" required>
+                            <input type="text" name="name" placeholder="Your Name *" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email *" required>
+                            <input type="email" name="email" placeholder="Email *" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <select name="product" required>
                             <option value="" disabled selected>Product Interested In</option>
-                            <option value="1">Single Side, Single Traction</option>
-                            <option value="2">Single Side, Double Traction</option>
-                            <option value="3">Double Side, Single Traction</option>
-                            <option value="4">Double Side, Double Traction</option>
+                            <option value="Single Side, Single Traction">Single Side, Single Traction</option>
+                            <option value="Single Side, Double Traction">Single Side, Double Traction</option>
+                            <option value="Double Side, Single Traction">Double Side, Single Traction</option>
+                            <option value="Double Side, Double Traction">Double Side, Double Traction</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" rows="3"></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="3"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-submit">Submit Inquiry</button>
                 </form>

@@ -184,8 +184,39 @@ document.getElementById('signUpForm').addEventListener('submit', function(e) {
 
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert('Thank you for your inquiry! We will contact you shortly.');
-    this.reset();
+    const form = this;
+    const data = new FormData(form);
+    
+    // 👇 请在这里替换为你自己的 Formspree ID
+    // 获取方式：注册 https://formspree.io/ -> 创建 Form -> 复制 Endpoint ID (例如: xrg...)
+    const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; 
+    
+    if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+        alert('演示模式：请在 script.js 中配置你的 Formspree ID 以接收真实邮件。');
+        form.reset();
+        return;
+    }
+
+    fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        if (response.ok) {
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            form.reset();
+        } else {
+            response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                    alert(data["errors"].map(error => error["message"]).join(", "));
+                } else {
+                    alert('Oops! There was a problem submitting your form');
+                }
+            })
+        }
+    }).catch(error => {
+        alert('Oops! There was a problem submitting your form');
+    });
 });
 
 // Search Functionality
