@@ -4,4 +4,4 @@ Disallow: /signin.html
 Disallow: /signup.html
 Disallow: /dashboard.html
 
-Sitemap: https://kvlasermarking.com/sitemap.xml
+Sitemap: https://kingvanlaser.com/sitemap.xml
