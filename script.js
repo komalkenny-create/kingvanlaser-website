@@ -189,7 +189,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     
     // 👇 请在这里替换为你自己的 Formspree ID
     // 获取方式：注册 https://formspree.io/ -> 创建 Form -> 复制 Endpoint ID (例如: xrg...)
-    const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; 
+    const FORMSPREE_ID = 'mzdykrqw'; 
     
     if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
         alert('演示模式：请在 script.js 中配置你的 Formspree ID 以接收真实邮件。');
