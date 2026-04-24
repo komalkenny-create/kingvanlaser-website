@@ -301,20 +301,12 @@ const videoOverlay = document.getElementById('videoOverlay');
 const demoVideo = document.getElementById('demoVideo');
 
 if (videoOverlay && demoVideo) {
-    videoOverlay.addEventListener('click', function() {
-        if (demoVideo.paused) {
-            demoVideo.play();
-            videoOverlay.classList.add('hidden');
-        }
+    // Hide overlay when video starts playing (via controls or overlay click)
+    demoVideo.addEventListener('play', function() {
+        videoOverlay.classList.add('hidden');
     });
 
-    demoVideo.addEventListener('click', function() {
-        if (!demoVideo.paused) {
-            demoVideo.pause();
-            videoOverlay.classList.remove('hidden');
-        }
-    });
-
+    // Show overlay only when video ends
     demoVideo.addEventListener('ended', function() {
         videoOverlay.classList.remove('hidden');
     });
