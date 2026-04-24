@@ -296,21 +296,9 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Video Player
-const videoOverlay = document.getElementById('videoOverlay');
+// Video Player - using native controls only
 const demoVideo = document.getElementById('demoVideo');
-
-if (videoOverlay && demoVideo) {
-    // Hide overlay when video starts playing (via controls or overlay click)
-    demoVideo.addEventListener('play', function() {
-        videoOverlay.classList.add('hidden');
-    });
-
-    // Show overlay only when video ends
-    demoVideo.addEventListener('ended', function() {
-        videoOverlay.classList.remove('hidden');
-    });
-}
+// Native controls handle play/pause automatically
 
 // Scroll Animations
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
@@ -333,30 +321,46 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Number Animation
-function animateNumber(element, target, duration = 1500) {
-    const increment = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
+// Number Animation - 数字跳动动画
+function animateNumber(element, target, duration = 2000) {
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // 使用更强的缓动函数让跳动明显减慢
+        const easeOut = 1 - Math.pow(1 - progress, 5);
+        
+        if (progress < 1) {
+            // 根据缓动进度调整跳动频率
+            const jumpFrequency = Math.max(10, Math.floor(30 * easeOut));
+            if (elapsed % jumpFrequency < 16) {
+                const randomNum = Math.floor(Math.random() * (target + 5));
+                element.textContent = randomNum;
+            }
+            requestAnimationFrame(update);
+        } else {
+            element.textContent = target;
         }
-        element.textContent = Math.floor(current) + (element.dataset.suffix || '');
-    }, 16);
+    }
+    
+    requestAnimationFrame(update);
 }
 
 const statsObserver = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.stat-number, .stat-num').forEach(stat => {
+            const stats = entry.target.querySelectorAll('.stat-number, .stat-num');
+            stats.forEach((stat, index) => {
                 const number = parseInt(stat.textContent);
                 const suffix = stat.textContent.replace(/[0-9]/g, '');
                 if (!isNaN(number) && !stat.dataset.animated) {
                     stat.dataset.animated = 'true';
                     stat.dataset.suffix = suffix;
-                    animateNumber(stat, number);
+                    // 0: 0.8秒, 1: 1.2秒, 2: 1.5秒
+                    const durations = [800, 1200, 1500];
+                    animateNumber(stat, number, durations[index] || 1500);
                 }
             });
         }
